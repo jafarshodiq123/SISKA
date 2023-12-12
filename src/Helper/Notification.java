@@ -34,7 +34,7 @@ public class Notification {
     }
 
     // Success messages
-    public static final String DATA_ADDED_SUCCESS = "Data berhasil ditambahkan.";
+    public static final String DATA_ADDED_SUCCESS = "Data berhasil disimpan.";
     public static final String DATA_UPDATED_SUCCESS = "Data berhasil diperbarui.";
     public static final String DATA_DELETED_SUCCESS = "Data berhasil dihapus.";
 

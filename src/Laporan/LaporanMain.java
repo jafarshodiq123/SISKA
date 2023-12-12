@@ -51,8 +51,8 @@ public class LaporanMain extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(penjualan3, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
-                .addGap(156, 156, 156))
+                .addComponent(penjualan3, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Laporan Penjualan", jPanel1);
@@ -84,7 +84,7 @@ public class LaporanMain extends javax.swing.JPanel {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 636, Short.MAX_VALUE)
+            .addGap(0, 482, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Laporan Pendapatan", jPanel3);
@@ -116,7 +116,9 @@ public class LaporanMain extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1)
+                .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -208,7 +208,7 @@ public class PembelianView extends javax.swing.JPanel {
                     .addComponent(harga, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(addList, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(btnBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
@@ -304,7 +304,7 @@ public class PembelianView extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -319,7 +319,7 @@ public class PembelianView extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,9 +333,7 @@ public class PembelianView extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +363,7 @@ public class PembelianView extends javax.swing.JPanel {
     }//GEN-LAST:event_dataObatFocusGained
 
     private void addListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addListActionPerformed
-           controller.tambahKeTable();
+        controller.tambahKeTable();
     }//GEN-LAST:event_addListActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
@@ -387,7 +385,6 @@ public class PembelianView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBayarActionPerformed
 
     private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
-        reset();
     }//GEN-LAST:event_jPanel1AncestorAdded
 
     private void dataSuplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSuplierActionPerformed
@@ -397,8 +394,8 @@ public class PembelianView extends javax.swing.JPanel {
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
         Object[] component = {table, dataSuplier, dataObat, qty, harga};
         controller = new Controllers.TransaksiPembelianController(component);
-        controller.tampilData();
         controller.spIsClick = false;
+        controller.tampilData();
     }//GEN-LAST:event_formAncestorAdded
 
     private void dataSuplierItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dataSuplierItemStateChanged
@@ -406,7 +403,10 @@ public class PembelianView extends javax.swing.JPanel {
 
             try {
                 controller.setTable();
+                System.out.println("das"+controller.spIsClick);
             } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+                
                 Logger.getLogger(PembelianView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -416,9 +416,7 @@ public class PembelianView extends javax.swing.JPanel {
         controller.spIsClick = true;
     }//GEN-LAST:event_dataSuplierMouseClicked
 
-    public void reset() {
-
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Components.ButtonIcon addList;

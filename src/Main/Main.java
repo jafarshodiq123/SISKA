@@ -21,10 +21,12 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
@@ -54,11 +56,16 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
+        // Hitung ukuran JFrame
+        int width = (int) (screenSize.width * 0.9);
+        int height = (int) (screenSize.height * 0.9);
+        setSize(width,height);
         main.setOpaque(true);
         cardLayout = new CardLayout();
         main.setLayout(cardLayout);
-        main.add(new ObatView(), "Medicine");
+//        main.add(new ObatView(), "Medicine");
         main.add(new ObatView(), "obat");
         main.add(new SatuanView(), "satuan");
         main.add(new KategoriView(), "Category");
@@ -71,8 +78,8 @@ public class Main extends javax.swing.JFrame {
 //        main.add(new PembelianView(), "pembelian");
         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
-        cardLayout.show(main, "pembelian");
-        setExtendedState((Main.MAXIMIZED_BOTH));
+        cardLayout.show(main, "Home");
+//        setExtendedState((Main.MAXIMIZED_BOTH));
         setLocationRelativeTo(null);
         tanggal.setText(FormatTanggal.formatDate(java.sql.Date.valueOf(LocalDate.now())));
 
@@ -108,6 +115,7 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         dialog = new javax.swing.JDialog();
+        dialog2 = new javax.swing.JPopupMenu();
         jPanel4 = new javax.swing.JPanel();
         main = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -124,8 +132,11 @@ public class Main extends javax.swing.JFrame {
         dialog.setUndecorated(true);
         dialog.setType(java.awt.Window.Type.POPUP);
 
+        dialog2.setBorder(null);
+        dialog2.setBorderPainted(false);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel4.setForeground(new java.awt.Color(245, 246, 250));
 
@@ -206,7 +217,7 @@ public class Main extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(pageName, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                .addComponent(pageName, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
                 .addGap(341, 341, 341)
                 .addComponent(tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -226,11 +237,11 @@ public class Main extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(49, 49, 49))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(47, 47, 47))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,9 +249,9 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
-                .addGap(14, 14, 14))
+                .addGap(34, 34, 34)
+                .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -249,15 +260,14 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -326,6 +336,7 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog dialog;
+    private javax.swing.JPopupMenu dialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -390,22 +401,89 @@ public class Main extends javax.swing.JFrame {
                     pageName.setText(objects[3].toString());
                 }
 
+//                @Override
+//                public void mouseEntered(MouseEvent e) {
+//                    super.mouseEntered(e);
+//                    Point position = panel.getLocationOnScreen();
+//                    dialog.setVisible(false);
+//                    for (JPanel panel : addedLabels) {
+//                        dialog.remove(panel);
+//                    }
+//                    addedLabels.clear();
+//                    dialog.setVisible(false);
+//                    addedLabels.clear();
+//
+//                    Object[] childRows = (Object[]) objects[4];
+//                    javax.swing.JPanel panel2 = new javax.swing.JPanel();
+//                    panel2.setBackground(new Color(51, 85, 188));
+//                    panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+////                    panel2.setSize(200, 100);
+//                    panel2.setBorder(new EmptyBorder(5, 0, 0, 0));
+//                    for (Object object : childRows) {
+//                        Object[] innerRow = (Object[]) object;
+//                        javax.swing.JLabel label2 = new javax.swing.JLabel(innerRow[0].toString());
+//                        javax.swing.JPanel panel3 = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
+//                        label2.setHorizontalAlignment(SwingConstants.LEFT);
+//                        label2.setForeground(Color.white);
+//                        label2.setFont(new Font("Poppins", Font.PLAIN, 13));
+//                        panel3.setBorder(new EmptyBorder(0, 10, 5, 10));
+//                        panel3.setBackground(new Color(51, 85, 188));
+//                        panel3.add(label2);
+//                        panel2.add(panel3);
+//
+//                        dialog.add(panel2);
+//                        addedLabels.add(panel2);
+//                        panel3.addMouseListener(new java.awt.event.MouseAdapter() {
+//                            @Override
+//                            public void mouseClicked(MouseEvent e) {
+//                                resetStyle();
+//                                setBoldFont(label);
+//                                setBottomBorder(panel);
+//                                cardLayout.show(main, innerRow[0].toString());
+//                                pageName.setText(innerRow[1].toString());
+//                            }
+//                        });
+//
+//                    }
+//                    if (childRows.length > 0) {
+//                        dialog.setBounds(position.x, position.y + 73, 200, childRows.length * 43);
+//                        dialog.setVisible(true);
+//                    }
+//
+//                }
+//
+//                @Override
+//                public void mouseExited(MouseEvent e) {
+//                    super.mouseExited(e);
+//
+//                    dialog.addMouseMotionListener(new java.awt.event.MouseAdapter() {
+//                        @Override
+//                        public void mouseMoved(MouseEvent e) {
+////                            // Check if the cursor is over the text area
+//                            Point point = e.getPoint();
+//                            if (panel.getBounds().contains(point) || dialog.getBounds().contains(point) || jPanel2.getBounds().contains(point)) {
+//                                System.out.println("Cursor over the text area");
+//                            } else {
+//                                System.out.println("Cursor outside the text area");
+//                                // Close the dialog when the cursor is outside the text area or the dialog
+//                                dialog.dispose();
+//                            }
+//                        }
+//                    });
+////               
+//
+//                }
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    super.mouseEntered(e);
-                    Point position = panel.getLocationOnScreen();
-                    dialog.setVisible(false);
                     for (JPanel panel : addedLabels) {
-                        dialog.remove(panel);
+                        dialog2.remove(panel);
                     }
                     addedLabels.clear();
-                    dialog.setVisible(false);
-                    addedLabels.clear();
-
                     Object[] childRows = (Object[]) objects[4];
                     javax.swing.JPanel panel2 = new javax.swing.JPanel();
                     panel2.setBackground(new Color(51, 85, 188));
                     panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+                    panel2.setPreferredSize(new Dimension(200, 43 * childRows.length));
 //                    panel2.setSize(200, 100);
                     panel2.setBorder(new EmptyBorder(5, 0, 0, 0));
                     for (Object object : childRows) {
@@ -420,7 +498,7 @@ public class Main extends javax.swing.JFrame {
                         panel3.add(label2);
                         panel2.add(panel3);
 
-                        dialog.add(panel2);
+                        dialog2.add(panel2);
                         addedLabels.add(panel2);
                         panel3.addMouseListener(new java.awt.event.MouseAdapter() {
                             @Override
@@ -430,59 +508,14 @@ public class Main extends javax.swing.JFrame {
                                 setBottomBorder(panel);
                                 cardLayout.show(main, innerRow[0].toString());
                                 pageName.setText(innerRow[1].toString());
+                                dialog2.setVisible(false);
                             }
                         });
 
                     }
-                    if (childRows.length > 0) {
-                        dialog.setBounds(position.x, position.y + 73, 200, childRows.length * 43);
-                        dialog.setVisible(true);
-                    }
-
+                    dialog2.show(panel, 0, panel.getHeight() + 5);
                 }
 
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    super.mouseExited(e);
-
-                    dialog.addMouseMotionListener(new java.awt.event.MouseAdapter() {
-                        @Override
-                        public void mouseMoved(MouseEvent e) {
-//                            // Check if the cursor is over the text area
-                            Point point = e.getPoint();
-                            if (panel.getBounds().contains(point) || dialog.getBounds().contains(point) || jPanel2.getBounds().contains(point)) {
-                                System.out.println("Cursor over the text area");
-                            } else {
-                                System.out.println("Cursor outside the text area");
-                                // Close the dialog when the cursor is outside the text area or the dialog
-                                dialog.dispose();
-                            }
-                        }
-                    });
-//                    this.addMouseListener(new MouseAdapter() {
-//                        @Override
-//                        public void mouseClicked(MouseEvent e) {
-//                            Point point = e.getPoint();
-//                            if (!dialog.getBounds().contains(point)) {
-//                                dialog.dispose(); // Close the dialog when clicked outside
-//                            }
-//                        }
-//                    });
-//                    dialog.addMouseListener(new java.awt.event.MouseAdapter() {
-//                        @Override
-//                        public void mouseExited(MouseEvent e) {
-//                            dialog.setVisible(false);
-//                            dialog.dispose();
-//                            for (JPanel panel : addedLabels) {
-//                                dialog.remove(panel);
-//                            }
-//                            addedLabels.clear();
-//
-//                        }
-//
-//                    });
-
-                }
             });
             panel.add(label);
 

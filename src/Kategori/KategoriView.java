@@ -49,12 +49,13 @@ public class KategoriView extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         customButton1 = new Components.CustomButton();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
         searchObat = new Components.CustomField();
         buttonIcon1 = new Components.ButtonIcon();
         buttonIcon2 = new Components.ButtonIcon();
         buttonIcon3 = new Components.ButtonIcon();
+        jPanel3 = new Components.CustomPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -127,6 +128,42 @@ public class KategoriView extends javax.swing.JPanel {
             }
         });
 
+        searchObat.setPlaceholder("Cari Kategori");
+        searchObat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchObatKeyReleased(evt);
+            }
+        });
+
+        buttonIcon1.setBackground(new java.awt.Color(109, 207, 102));
+        buttonIcon1.setForeground(new java.awt.Color(255, 255, 255));
+        buttonIcon1.setIcon("Assets/svg/editIcon.svg");
+        buttonIcon1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIcon1ActionPerformed(evt);
+            }
+        });
+
+        buttonIcon2.setBackground(new java.awt.Color(215, 9, 83));
+        buttonIcon2.setForeground(new java.awt.Color(255, 255, 255));
+        buttonIcon2.setIcon("Assets/svg/deleteIcon.svg");
+        buttonIcon2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIcon2ActionPerformed(evt);
+            }
+        });
+
+        buttonIcon3.setIcon("Assets/svg/addIcon.svg");
+        buttonIcon3.setBackground(new java.awt.Color(58, 98, 215));
+        buttonIcon3.setForeground(new java.awt.Color(255, 255, 255));
+        buttonIcon3.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        buttonIcon3.setIconTextGap(1);
+        buttonIcon3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIcon3ActionPerformed(evt);
+            }
+        });
+
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setVerifyInputWhenFocusTarget(false);
 
@@ -170,56 +207,39 @@ public class KategoriView extends javax.swing.JPanel {
             table.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        searchObat.setPlaceholder("Cari Kategori");
-        searchObat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                searchObatKeyReleased(evt);
-            }
-        });
-
-        buttonIcon1.setBackground(new java.awt.Color(109, 207, 102));
-        buttonIcon1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIcon1.setIcon("Assets/svg/editIcon.svg");
-        buttonIcon1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonIcon1ActionPerformed(evt);
-            }
-        });
-
-        buttonIcon2.setBackground(new java.awt.Color(215, 9, 83));
-        buttonIcon2.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIcon2.setIcon("Assets/svg/deleteIcon.svg");
-        buttonIcon2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonIcon2ActionPerformed(evt);
-            }
-        });
-
-        buttonIcon3.setIcon("Assets/svg/addIcon.svg");
-        buttonIcon3.setBackground(new java.awt.Color(58, 98, 215));
-        buttonIcon3.setForeground(new java.awt.Color(255, 255, 255));
-        buttonIcon3.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        buttonIcon3.setIconTextGap(1);
-        buttonIcon3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonIcon3ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1)
+                .addGap(0, 0, 0))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(searchObat, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(buttonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(buttonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(searchObat, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(buttonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,9 +252,9 @@ public class KategoriView extends javax.swing.JPanel {
                             .addComponent(buttonIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(buttonIcon3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGap(31, 31, 31)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -291,6 +311,7 @@ public class KategoriView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private Components.CustomField namaKategori;
     private Components.CustomField searchObat;

@@ -203,7 +203,10 @@ public class TransaksiPembelianController implements Controller {
         if (!spIsClick) {
             return;
         }
-//        if(suplierCom.getSelectedIndex()==0)return;
+        if (suplierCom.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(table, "error");
+            return;
+        }
         String namaSp = suplierCom.getSelectedItem().toString();
 
         ResultSet dataSp = getSuplier(namaSp);
@@ -219,7 +222,7 @@ public class TransaksiPembelianController implements Controller {
     public void tambahKeTable() {
         try {
             String namaOb = obatCom.getSelectedItem().toString();
-            if(obatCom.getSelectedIndex()==0){
+            if (obatCom.getSelectedIndex() == 0) {
                 Notification.showInfo("Silahkan Pilih Obat  Terlebih Dahulu", table);
                 return;
             };
@@ -249,13 +252,13 @@ public class TransaksiPembelianController implements Controller {
 
     }
 
-    public void resetAll(){
+    public void resetAll() {
         table.removeAll();
-        
+
         ((DefaultTableModel) table.getModel()).setRowCount(0);
-      
-        
+
     }
+
     public void resetTable() {
         try {
             int index = table.getSelectedRow();
