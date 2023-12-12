@@ -82,12 +82,12 @@ public class SuplierView extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Alamat*");
 
-        namaPemasok.setPlaceholder("Masukkan Nama Kategori");
+        alamat.setPlaceholder("Masukkan Alamat");
 
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("No Telepon*");
 
-        namaPemasok.setPlaceholder("Masukkan Nama Kategori");
+        no_telepon.setPlaceholder("Masukkan No Telepon");
 
         jLabel5.setFont(new java.awt.Font("Poppins SemiBold", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 102));

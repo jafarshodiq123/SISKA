@@ -6,6 +6,7 @@ package User;
 
 import Kategori.*;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import com.formdev.flatlaf.ui.FlatButtonBorder;
 import table.TableCustom;
 
 /**
@@ -24,7 +25,7 @@ public class UserView extends javax.swing.JPanel {
         controller = new Controllers.UserController(table, jDialog1);
         controller.tampilData();
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
-
+customButton1.setBorder(new FlatButtonBorder());
         searchObat.setIcon("Assets/svg/searchIcon.svg");
     }
 
@@ -75,6 +76,7 @@ public class UserView extends javax.swing.JPanel {
 
         customButton1.setIcon("Assets/svg/saveIcon.svg");
         customButton1.setText("Simpan");
+        customButton1.setBorderPainted(false);
         customButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 customButton1ActionPerformed(evt);
@@ -319,10 +321,7 @@ public class UserView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

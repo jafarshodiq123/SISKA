@@ -345,6 +345,7 @@
                 <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="dataObatItemStateChanged"/>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dataObatMouseClicked"/>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="dataObatMouseReleased"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dataObatActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -543,7 +544,7 @@
                           <Title/>
                           <Editor/>
                           <Renderer editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                            <Connection code="new DeleteButtonRenderer(() -&gt; {&#xd;&#xa;    // Implementasi metode yang dijalankan saat tombol di klik&#xd;&#xa;    System.out.println(&quot;Tombol Delete diklik pada baris &quot; );&#xd;&#xa;})" type="code"/>
+                            <Connection code="new DeleteButtonRenderer()" type="code"/>
                           </Renderer>
                         </Column>
                       </TableColumnModel>

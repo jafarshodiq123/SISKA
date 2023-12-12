@@ -158,6 +158,21 @@ public class SupplierController implements Controller {
         String notlp = this.notlp.getText();
 
         String codeTRX = KodeGenerator.generateKodeSuplier();
+
+        Set<String> uniqueBarangList = new HashSet<>();
+        for (JComboBox combo : barangList) {
+            String value = combo.getSelectedItem().toString();
+            if (!uniqueBarangList.add(value)) {
+                Notification.showInfo("Nilai duplikat dalam barang pasok: " + value, form);
+                return;
+            }
+            int index = combo.getSelectedIndex();
+            if (index == 0) {
+                Notification.showInfo(Notification.EMPTY_VALUE, form);
+                return;
+            }
+
+        }
         try {
             if (suplierList.stream().anyMatch(satuan -> satuan[1].toString().trim().equalsIgnoreCase(namaSuplier.trim()) && !satuan[0].equals(idEdit))) {
                 Notification.showInfo(Notification.DUPLICATE_DATA, form);
@@ -166,6 +181,7 @@ public class SupplierController implements Controller {
 
             } else {
                 String kodeSp = codeTRX;
+                System.out.println("kesimpan");
                 if (status == 1) {
                     DB.query2("INSERT INTO supplier (kode_suplier,nama_suplier,alamat,nomor_telepon)Values ('" + codeTRX + "','" + namaSuplier + "','" + alamat + "','" + notlp + "')");
                 } else {
@@ -175,13 +191,9 @@ public class SupplierController implements Controller {
                     idEdit = "";
                 }
                 DB.query2("DELETE FROM penjualan where  kode_suplier = '" + kodeSp + "'");
-                Set<String> uniqueBarangList = new HashSet<>();
                 for (JComboBox combo : barangList) {
                     String value = combo.getSelectedItem().toString();
-                    if (!uniqueBarangList.add(value)) {
-                        Notification.showInfo("Nilai duplikat dalam barang pasok: " + value, form);
-                        return;
-                    }
+
                     ResultSet kodeObat = DB.query("SELECT kode_obat from data_obat where nama_obat = '" + value + "'");
                     kodeObat.next();
                     DB.query2("INSERT INTO penjualan (`kode_obat`, `kode_suplier`) values('" + kodeObat.getString("kode_obat") + "','" + kodeSp + "')");

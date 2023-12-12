@@ -72,7 +72,7 @@ public class StokView extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "No", "Kode Transaksi", "Nama Kasir", "Total Barang Dijual", "Tanggal Transaksi"
+                "No", "Kode Transaksi", "Nama Kasir", "Total Barang Terjual", "Tanggal Transaksi"
             }
         ) {
             Class[] types = new Class [] {

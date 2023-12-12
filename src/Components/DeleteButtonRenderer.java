@@ -8,10 +8,8 @@ import java.awt.event.ActionListener;
 
 public class DeleteButtonRenderer extends Components.ButtonIcon implements TableCellRenderer {
 
-    private Runnable onDelete;
 
-    public DeleteButtonRenderer(Runnable onDelete) {
-        this.onDelete = onDelete;
+    public DeleteButtonRenderer() {
 
         // Set properties for the button
         setOpaque(true);
@@ -20,14 +18,7 @@ public class DeleteButtonRenderer extends Components.ButtonIcon implements Table
         setFocusPainted(false);
         setBorderPainted(false);
         setIcon("Assets/svg/deleteIcon.svg");
-        addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("dsadas");
-                // Handle button click event here
-                onDelete.run(); // Run the provided method
-            }
-        });
+        
     }
 
     @Override

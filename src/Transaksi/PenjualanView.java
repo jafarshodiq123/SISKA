@@ -4,12 +4,27 @@
  */
 package Transaksi;
 
+import java.sql.ResultSet;
 import Components.DeleteButtonRenderer;
 import Controllers.TransaksiPenjualanController;
 import com.formdev.flatlaf.ui.FlatTextBorder;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.prefs.Preferences;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.TableCellEditor;
+import javax.swing.text.JTextComponent;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 import table.TableCustom;
 
@@ -32,6 +47,56 @@ public class PenjualanView extends javax.swing.JPanel {
         initComponents();
         controller = new TransaksiPenjualanController(table, dataObat, dataJenis, qty, stok, harga, bayar, addList, batal, totalHarga, kembalian, btnBayar);
         controller.tampilData();
+//        AutoCompleteDecorator.decorate(dataObat);
+//        revalidate();
+//        validate();
+//        JTextField tf = (JTextField) dataObat.getEditor().getEditorComponent();
+//
+// Add keylistener to JTextField!
+//        JTextComponent editor = (JTextComponent) dataObat.getEditor().getEditorComponent();
+//        editor.getDocument().addDocumentListener(new DocumentListener() {
+//            @Override
+//            public void insertUpdate(DocumentEvent e) {
+//                updateComboBox();
+//            }
+//
+//            @Override
+//            public void removeUpdate(DocumentEvent e) {
+//                updateComboBox();
+//            }
+//
+//            @Override
+//            public void changedUpdate(DocumentEvent e) {
+//                updateComboBox();
+//            }
+//
+//            private void updateComboBox() {
+//                // Mendapatkan nilai terkini dari editor
+//                String input = editor.getText();
+//
+//                // Menyaring item yang cocok dengan nilai input
+//                DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) dataObat.getModel();
+//                int size = model.getSize();
+//                model.removeAllElements();
+//                for (int i = 0; i < size; i++) {
+//                    String value = model.getElementAt(i);
+////                    if (value.toLowerCase().contains(input.toLowerCase())) {
+////                        model.addElement(value);
+////                    }
+//                }
+//
+//                // Tampilkan drop-down list
+//                dataObat.setPopupVisible(true);
+//            }
+//        });
+//        dataObat.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                // Mendapatkan nilai terkini dari JComboBox
+//                String selectedValue = (String) dataObat.getSelectedItem();
+//                System.out.println("Nilai terkini: " + selectedValue);
+//            }
+//        });
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
 
     }
@@ -188,6 +253,11 @@ public class PenjualanView extends javax.swing.JPanel {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 dataObatMouseReleased(evt);
+            }
+        });
+        dataObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataObatActionPerformed(evt);
             }
         });
 
@@ -384,10 +454,7 @@ public class PenjualanView extends javax.swing.JPanel {
             table.getColumnModel().getColumn(5).setMaxWidth(100);
             table.getColumnModel().getColumn(6).setMinWidth(80);
             table.getColumnModel().getColumn(6).setMaxWidth(80);
-            table.getColumnModel().getColumn(6).setCellRenderer(new DeleteButtonRenderer(() -> {
-                // Implementasi metode yang dijalankan saat tombol di klik
-                System.out.println("Tombol Delete diklik pada baris " );
-            }));
+            table.getColumnModel().getColumn(6).setCellRenderer(new DeleteButtonRenderer());
         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -516,6 +583,38 @@ public class PenjualanView extends javax.swing.JPanel {
         reset();
     }//GEN-LAST:event_jPanel1AncestorAdded
 
+    private void dataObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataObatActionPerformed
+//        String value = dataObat.getSelectedItem().toString().toLowerCase();
+//        int totalData = dataObat.getModel().getSize();
+//
+//        DefaultComboBoxModel<String> originalModel = new DefaultComboBoxModel();
+//        DefaultComboBoxModel<String> filteredModel = new DefaultComboBoxModel<>();
+//        try {
+//            ResultSet data = controller.getObatData();
+//            while (data.next()) {
+//                originalModel.addElement(data.getString("nama_obat"));
+//            }
+//        } catch (Exception e) {
+//        }
+//
+//        for (int i = 0; i < totalData; i++) {
+//            String value2 = dataObat.getItemAt(i).toString();
+//
+//            if (value2.contains(value)) {
+//                filteredModel.addElement(value2);
+//            }
+//        }
+//
+//        controller.setJenis();
+//        if (filteredModel.getSize() > 0) {
+//            dataObat.setModel(filteredModel);
+//            dataObat.showPopup();
+//        } else {
+//            dataObat.setModel(originalModel);
+//        }
+
+    }//GEN-LAST:event_dataObatActionPerformed
+
     public void reset() {
 //        removeAll();
 //        initComponents();
@@ -553,3 +652,67 @@ public class PenjualanView extends javax.swing.JPanel {
     private javax.swing.JLabel totalHarga;
     // End of variables declaration//GEN-END:variables
 }
+//
+//class AutoComplete {
+//
+//    static void enable(JComboBox<String> comboBox) {
+//        JTextField textField = (JTextField) comboBox.getEditor().getEditorComponent();
+//        textField.getDocument().addDocumentListener(new DocumentListener() {
+//            @Override
+//            public void insertUpdate(DocumentEvent e) {
+//                update();
+//            }
+//
+//            @Override
+//            public void removeUpdate(DocumentEvent e) {
+//                update();
+//            }
+//
+//            @Override
+//            public void changedUpdate(DocumentEvent e) {
+//                update();
+//            }
+//
+//            private void update() {
+//                SwingUtilities.invokeLater(() -> {
+//                    String text = textField.getText().toLowerCase();
+//                    DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+//                    for (String item : getItems(comboBox)) {
+//                        if (item.toLowerCase().startsWith(text)) {
+//                            model.addElement(item);
+//                        }
+//                    }
+//                    comboBox.setModel(model);
+//                    comboBox.setSelectedIndex(-1);
+//                    comboBox.setPopupVisible(model.getSize() > 0);
+//                });
+//            }
+//        });
+//
+//        textField.addKeyListener(new KeyListener() {
+//            @Override
+//            public void keyTyped(KeyEvent e) {
+//            }
+//
+//            @Override
+//            public void keyPressed(KeyEvent e) {
+//                if (e.getKeyCode() == KeyEvent.VK_TAB) {
+//                    String selected = (String) comboBox.getSelectedItem();
+//                    textField.setText(selected);
+//                }
+//            }
+//
+//            @Override
+//            public void keyReleased(KeyEvent e) {
+//            }
+//        });
+//    }
+//
+//    private static List<String> getItems(JComboBox<String> comboBox) {
+//        List<String> items = new ArrayList<>();
+//        for (int i = 0; i < comboBox.getItemCount(); i++) {
+//            items.add(comboBox.getItemAt(i));
+//        }
+//        return items;
+//    }
+//}

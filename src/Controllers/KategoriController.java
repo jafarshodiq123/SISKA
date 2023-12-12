@@ -70,7 +70,6 @@ public class KategoriController implements Controller {
             int id = (int) kategoriList.get(row)[0];
             ResultSet dataObat = DB.query("SELECT COUNT(*) AS count FROM obat WHERE id_kategori = '" + id + "'");
             dataObat.next();
-            System.out.println("SELECT COUNT(*) AS count FROM obat WHERE id_kategori = '" + id + "'");
             if (dataObat.getInt("count") > 0) {
                 Notification.showError(Notification.DATA_IN_USE_ERROR,table);
                 return;

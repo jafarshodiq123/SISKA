@@ -172,7 +172,7 @@
             </Component>
             <Component class="Components.CustomField" name="alamat">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="namaPemasok.setPlaceholder(&quot;Masukkan Nama Kategori&quot;);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="alamat.setPlaceholder(&quot;Masukkan Alamat&quot;);"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
@@ -185,7 +185,7 @@
             </Component>
             <Component class="Components.CustomField" name="no_telepon">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="namaPemasok.setPlaceholder(&quot;Masukkan Nama Kategori&quot;);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="no_telepon.setPlaceholder(&quot;Masukkan No Telepon&quot;);"/>
               </AuxValues>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">

@@ -102,7 +102,7 @@
                     <Column editable="false" title="No" type="java.lang.Object"/>
                     <Column editable="false" title="Kode Transaksi" type="java.lang.String"/>
                     <Column editable="false" title="Nama Kasir" type="java.lang.Object"/>
-                    <Column editable="false" title="Total Barang Dijual" type="java.lang.Object"/>
+                    <Column editable="false" title="Total Barang Terjual" type="java.lang.Object"/>
                     <Column editable="false" title="Tanggal Transaksi" type="java.lang.String"/>
                   </Table>
                 </Property>

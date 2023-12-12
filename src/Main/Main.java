@@ -21,13 +21,11 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
-import java.awt.Label;
-import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,12 +34,11 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
 import org.json.JSONArray;
-import org.netbeans.lib.awtextra.AbsoluteLayout;
 
 /**
  *
@@ -69,11 +66,12 @@ public class Main extends javax.swing.JFrame {
         main.add(new SuplierView(), "Supplier");
         main.add(new LaporanMain(), "Report");
         main.add(new PenjualanView(), "penjualan");
+        main.add(new Transaksi.PembelianView(), "pembelian");
         main.add(new PengeluaranView(), "pengeluaran");
 //        main.add(new PembelianView(), "pembelian");
         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
-        cardLayout.show(main, "Supplier");
+        cardLayout.show(main, "pembelian");
         setExtendedState((Main.MAXIMIZED_BOTH));
         setLocationRelativeTo(null);
         tanggal.setText(FormatTanggal.formatDate(java.sql.Date.valueOf(LocalDate.now())));
@@ -94,10 +92,8 @@ public class Main extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
-        
-        
-                sidebar();
 
+        sidebar();
 
 //        role.setText("sda");
     }
@@ -243,8 +239,8 @@ public class Main extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                .addGap(34, 34, 34))
+                .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -260,8 +256,8 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -411,17 +407,22 @@ public class Main extends javax.swing.JFrame {
                     panel2.setBackground(new Color(51, 85, 188));
                     panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
 //                    panel2.setSize(200, 100);
-//                    panel2.setBorder(new EmptyBorder(20,10,20,10));
+                    panel2.setBorder(new EmptyBorder(5, 0, 0, 0));
                     for (Object object : childRows) {
                         Object[] innerRow = (Object[]) object;
                         javax.swing.JLabel label2 = new javax.swing.JLabel(innerRow[0].toString());
+                        javax.swing.JPanel panel3 = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
+                        label2.setHorizontalAlignment(SwingConstants.LEFT);
                         label2.setForeground(Color.white);
                         label2.setFont(new Font("Poppins", Font.PLAIN, 13));
-                        label2.setBorder(new EmptyBorder(8, 10, 8, 10));
-                        panel2.add(label2);
+                        panel3.setBorder(new EmptyBorder(0, 10, 5, 10));
+                        panel3.setBackground(new Color(51, 85, 188));
+                        panel3.add(label2);
+                        panel2.add(panel3);
+
                         dialog.add(panel2);
                         addedLabels.add(panel2);
-                        label2.addMouseListener(new java.awt.event.MouseAdapter() {
+                        panel3.addMouseListener(new java.awt.event.MouseAdapter() {
                             @Override
                             public void mouseClicked(MouseEvent e) {
                                 resetStyle();
@@ -434,7 +435,7 @@ public class Main extends javax.swing.JFrame {
 
                     }
                     if (childRows.length > 0) {
-                        dialog.setBounds(position.x, 79, 200, childRows.length*43);
+                        dialog.setBounds(position.x, position.y + 73, 200, childRows.length * 43);
                         dialog.setVisible(true);
                     }
 
@@ -444,17 +445,42 @@ public class Main extends javax.swing.JFrame {
                 public void mouseExited(MouseEvent e) {
                     super.mouseExited(e);
 
-                    dialog.addMouseListener(new java.awt.event.MouseAdapter() {
+                    dialog.addMouseMotionListener(new java.awt.event.MouseAdapter() {
                         @Override
-                        public void mouseExited(MouseEvent e) {
-                            for (JPanel panel : addedLabels) {
-                                dialog.remove(panel);
+                        public void mouseMoved(MouseEvent e) {
+//                            // Check if the cursor is over the text area
+                            Point point = e.getPoint();
+                            if (panel.getBounds().contains(point) || dialog.getBounds().contains(point) || jPanel2.getBounds().contains(point)) {
+                                System.out.println("Cursor over the text area");
+                            } else {
+                                System.out.println("Cursor outside the text area");
+                                // Close the dialog when the cursor is outside the text area or the dialog
+                                dialog.dispose();
                             }
-                            addedLabels.clear();
-                            dialog.setVisible(false);
                         }
-
                     });
+//                    this.addMouseListener(new MouseAdapter() {
+//                        @Override
+//                        public void mouseClicked(MouseEvent e) {
+//                            Point point = e.getPoint();
+//                            if (!dialog.getBounds().contains(point)) {
+//                                dialog.dispose(); // Close the dialog when clicked outside
+//                            }
+//                        }
+//                    });
+//                    dialog.addMouseListener(new java.awt.event.MouseAdapter() {
+//                        @Override
+//                        public void mouseExited(MouseEvent e) {
+//                            dialog.setVisible(false);
+//                            dialog.dispose();
+//                            for (JPanel panel : addedLabels) {
+//                                dialog.remove(panel);
+//                            }
+//                            addedLabels.clear();
+//
+//                        }
+//
+//                    });
 
                 }
             });
