@@ -4,32 +4,29 @@
  */
 package Controllers;
 
-/**
- *
- * @author Muhammad Nor Kholit
- */
 import Config.DB;
 import Helper.Currency;
 import Helper.FormatTanggal;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class LaporanStokController implements Controller {
+/**
+ *
+ * @author rexy
+ */
+public class LaporanPendapatanController implements Controller{
 
-    private int idEdit;
-    //status 1 untuk tambah 2 untuk edit
-    private int status = 1;
+
     private JTable table;
     private JDialog form;
     private ArrayList<Object[]> penjualanList = new ArrayList<>();
 
-    public LaporanStokController(JTable table, JDialog form) {
+    public LaporanPendapatanController(JTable table, JDialog form) {
         this.table = table;
         this.form = form;
     }
@@ -38,26 +35,21 @@ public class LaporanStokController implements Controller {
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
-            ResultSet data = DB.query("SELECT * FROM laporan_stok   order by tanggal_transaksi desc");
+            ResultSet data = DB.query("SELECT * FROM laporan_pendapatan order by tanggal desc");
             int no = 1;
             // menggunakan DefaultTableModel supaya bisa menambahkan data
             DefaultTableModel tables = (DefaultTableModel) table.getModel();
             tables.fireTableDataChanged();
             tables.setRowCount(0);
-            int[] arrayId = new int[10];
             penjualanList.clear();
 
             while (data.next()) {
                 //  menyimpan data dalam bentuk array
-                System.out.println(data.getString("tanggal_transaksi"));
 
                 Object[] dataTable = {
                     no,
-                    data.getString("kode_obat"),
-                    data.getString("nama_obat"),
-                    data.getString("obat_terjual"),
-                    FormatTanggal.formatDate(data.getDate("tanggal_transaksi"))
-
+                    data.getString("pendapatan"),
+                    data.getString("tanggal"),
                 };
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);
@@ -131,20 +123,18 @@ public class LaporanStokController implements Controller {
     public void updateData(Object[] object) {
     }
 
-    public void filterPeriode(Object[] component) {
+    public void filterPeriode(int index,LocalDate ranges,LocalDate rangef) {
         try {
-
-            int index = ((JComboBox) component[0]).getSelectedIndex();
-
             String sql = "";
-            if (index == 0) {
-                sql = "SELECT obat_terjual as total_obat_terjual ,nama_obat, DATE(tanggal_transaksi) as tanggal, kode_obat FROM laporan_stok   order by tanggal_transaksi desc";
-            } else if (index == 1) {
-                sql = "SELECT SUM(obat_terjual) AS total_obat_terjual, nama_obat, DATE(tanggal_transaksi) as tanggal, kode_obat FROM laporan_stok GROUP BY DATE(tanggal_transaksi),kode_obat, nama_obat order  by tanggal desc; ";
-            } else if (index == 2) {
-                sql = "SELECT SUM(obat_terjual) AS total_obat_terjual, nama_obat, DATE_FORMAT(tanggal_transaksi, '%Y-%m') AS tanggal, kode_obat FROM laporan_stok  GROUP BY tanggal, kode_obat, nama_obat order by tanggal desc;";
-            } else if (index == 3) {
-                sql = "SELECT SUM(obat_terjual) AS total_obat_terjual, nama_obat, DATE_FORMAT(tanggal_transaksi, '%Y') AS tanggal, kode_obat FROM laporan_stok  GROUP BY tanggal, kode_obat, nama_obat order by tanggal desc;";
+            switch (index) {
+                case 0 -> sql = "SELECT * FROM laporan_pendapatan order by tanggal desc";
+                case 1 ->{
+                    sql = "SELECT * FROM laporan_pendapatan where tanggal BETWEEN '"+ranges+"' AND '"+rangef+"' order by tanggal desc";
+                }
+                case 2 -> sql = "SELECT sum(pendapatan) AS pendapatan, DATE_FORMAT(tanggal, '%Y-%m') AS tanggal FROM laporan_pendapatan GROUP BY month(tanggal),year(tanggal) order by month(tanggal),year(tanggal) desc;";
+                case 3 -> sql = "SELECT sum(pendapatan) AS pendapatan, DATE_FORMAT(tanggal, '%Y') AS tanggal FROM laporan_pendapatan GROUP BY year(tanggal) order by year(tanggal) desc;";
+                default -> {
+                }
             }
 
             ResultSet data = DB.query(sql);
@@ -158,15 +148,12 @@ public class LaporanStokController implements Controller {
 
             while (data.next()) {
                 //  menyimpan data dalam bentuk array
-               
+                
 
-                Object[] dataTable = {
+               Object[] dataTable = {
                     no,
-                    data.getString("kode_obat"),
-                    data.getString("nama_obat"),
-                    data.getString("total_obat_terjual"),
-                    FormatTanggal.formatTanggal(data.getString("tanggal"))
-
+                    data.getString("pendapatan"),
+                    data.getString("tanggal"),
                 };
                 //  memasukkan data kepada tabel
                 tables.addRow(dataTable);
@@ -177,5 +164,5 @@ public class LaporanStokController implements Controller {
             System.out.println("eror" + e.getMessage());
         }
     }
-
+    
 }

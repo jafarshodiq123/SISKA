@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.prefs.Preferences;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -79,7 +80,7 @@ public class Main extends javax.swing.JFrame {
         main.add(new DashboardView(), "Home");
         pageName.setText("Dashboard");
         cardLayout.show(main, "Home");
-//        setExtendedState((Main.MAXIMIZED_BOTH));
+        setExtendedState((Main.MAXIMIZED_BOTH));
         setLocationRelativeTo(null);
         tanggal.setText(FormatTanggal.formatDate(java.sql.Date.valueOf(LocalDate.now())));
 

@@ -114,7 +114,6 @@ public class DashboardView extends javax.swing.JPanel {
         notif_stok = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1221, 406));
         addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -148,10 +147,7 @@ public class DashboardView extends javax.swing.JPanel {
         notif_panel.setLayout(notif_panelLayout);
         notif_panelLayout.setHorizontalGroup(
             notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(notif_panelLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(notif_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(notif_exp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
         );
         notif_panelLayout.setVerticalGroup(
             notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +173,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(total_items, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         item_panelLayout.setVerticalGroup(
             item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,13 +196,14 @@ public class DashboardView extends javax.swing.JPanel {
         chart_panelLayout.setHorizontalGroup(
             chart_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(chart_panelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
+                .addGroup(chart_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(chart_panelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE))
+                    .addGroup(chart_panelLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(chartTitle)))
                 .addContainerGap())
-            .addGroup(chart_panelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(chartTitle)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         chart_panelLayout.setVerticalGroup(
             chart_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +211,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(chartTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -238,7 +235,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pendapatanLabel)
                     .addComponent(pendapatan_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         pendapatanperhariLayout.setVerticalGroup(
             pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,7 +268,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pengeluaran)
                     .addComponent(pengeluaran_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         pengeluaranperhariLayout.setVerticalGroup(
             pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,7 +299,9 @@ public class DashboardView extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(notif_stok, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(notif_stok))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,17 +309,6 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(notif_stok)
                 .addGap(0, 0, 0))
-        );
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -341,11 +329,6 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(560, 560, 560)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(561, 561, 561)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,11 +344,6 @@ public class DashboardView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -377,37 +355,42 @@ public class DashboardView extends javax.swing.JPanel {
             List<ModelChart> dataPengeluaran = new ArrayList<>();
             java.sql.Connection connection = DB.getConnection();
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            ResultSet data = statement.executeQuery("SELECT bulan, SUM(total_pengeluaran) AS total_pengeluaran, SUM(total_penjualan) AS total_penjualan FROM ( SELECT MONTH(tanggal_pengeluaran) AS bulan, SUM(total_pengeluaran) AS total_pengeluaran, NULL AS total_penjualan FROM pengeluaran GROUP BY bulan UNION ALL SELECT MONTH(tanggal_transaksi) AS bulan, NULL AS total_pengeluaran, SUM(total_harga) AS total_penjualan FROM transaksi_penjualan GROUP BY bulan ) AS combined_data GROUP BY bulan;");
-
+//            ResultSet data = statement.executeQuery("SELECT bulan, SUM(total_pengeluaran) AS total_pengeluaran, SUM(total_penjualan) AS total_penjualan FROM ( SELECT MONTH(tanggal_pengeluaran) AS bulan, SUM(total_pengeluaran) AS total_pengeluaran, NULL AS total_penjualan FROM pengeluaran GROUP BY bulan UNION ALL SELECT MONTH(tanggal_transaksi) AS bulan, NULL AS total_pengeluaran, SUM(total_harga) AS total_penjualan FROM transaksi_penjualan GROUP BY bulan ) AS combined_data GROUP BY bulan;");
+            ResultSet data = statement.executeQuery("SELECT rugi_bersih,pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun, 2) as bulan FROM `laporan`");
 //            ResultSet data = DB.query("SELECT * FROM datachart");
             for (int bulan = 1; bulan <= 12; bulan++) {
                 String namaBulan = konversiintbln.getMonth(bulan);
-                double pengeluaran = 0;
-                double penjualan = 0;
+                int pengeluaran = 0;
+                int penjualan = 0;
+                int laba_bersih = 0;
+
 
                 // Cari data yang cocok untuk bulan saat ini dalam ResultSet
                 while (data.next()) {
                     int bulanData = data.getInt("bulan");
                     if (bulanData == bulan) {
-                        String total_pengeluaran = data.getString("total_pengeluaran");
-                        String total_Penjualan = data.getString("total_Penjualan");
+                        String total_pengeluaran = data.getString("pengeluaran");
+                        String total_Penjualan = data.getString("pendapatan");
+                        String total_lababersih = data.getString("laba_bersih");
+
 
                         // Cek dan atur nilai ke 0 jika null
-                        if (total_pengeluaran == null) {
-                            total_pengeluaran = "0";
-                        }
-                        if (total_Penjualan == null) {
-                            total_Penjualan = "0";
-                        }
+//                        if (total_pengeluaran == null) {
+//                            total_pengeluaran = "0";
+//                        }
+//                        if (total_Penjualan == null) {
+//                            total_Penjualan = "0";
+//                        }
 
                         // Tambahkan ke total untuk bulan saat ini
-                        pengeluaran += Double.parseDouble(total_pengeluaran);
-                        penjualan += Double.parseDouble(total_Penjualan);
+                        pengeluaran += Integer.parseInt(total_pengeluaran);
+                        penjualan += Integer.parseInt(total_Penjualan);
+                        laba_bersih += Integer.parseInt(total_lababersih);
                     }
                 }
 
                 // Buat objek ModelChart dan tambahkan ke dalam list
-                ModelChart s = new ModelChart(namaBulan, new double[]{penjualan, pengeluaran});
+                ModelChart s = new ModelChart(namaBulan, new double[]{penjualan, pengeluaran,laba_bersih});
                 dataPengeluaran.add(s);
 
                 // Reset pointer ResultSet ke awal setiap kali loop selesai memproses satu bulan
@@ -417,6 +400,8 @@ public class DashboardView extends javax.swing.JPanel {
 // Tambahkan data ke dalam lineChart
             lineChart.addLegend("Pendapatan", Color.blue, Color.blue);
             lineChart.addLegend("Pengeluaran", Color.MAGENTA, Color.MAGENTA);
+            lineChart.addLegend("Laba Bersih", Color.ORANGE, Color.ORANGE);
+
             for (ModelChart d : dataPengeluaran) {
                 lineChart.addData(d);
             }
@@ -465,7 +450,7 @@ public class DashboardView extends javax.swing.JPanel {
                     pesan = "<html>Stok Obat " + namaObat + " Akan Segera Habis Tersisa " + jumlahObat + "</html>";
                 }
                 JLabel LABEL = new JLabel(pesan);
-                LABEL.setMaximumSize(new Dimension(380, 40));
+                LABEL.setMaximumSize(new Dimension(300, 40));
                 LABEL.setFont(new Font("Poppins medium", Font.PLAIN, 14));
                 LABEL.setBorder(new EmptyBorder(20, 5, 20, 5));
                 jPanel3.add(LABEL);
@@ -500,7 +485,7 @@ public class DashboardView extends javax.swing.JPanel {
                 jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
                 jp.setBorder(new EmptyBorder(5, 5, 5, 5));
                 JLabel label = new JLabel(pesan);
-                label.setMaximumSize(new Dimension(380, 40));
+                label.setMaximumSize(new Dimension(300, 40));
                 System.out.println(jPanel1.getBounds().getWidth());;
                 label.setFont(new Font("Poppins semibold", Font.PLAIN, 14));
                 jp.add(label);
@@ -614,7 +599,6 @@ public class DashboardView extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private chart.LineChart lineChart;
     private javax.swing.JScrollPane notif_exp;
     private javax.swing.JPanel notif_panel;
