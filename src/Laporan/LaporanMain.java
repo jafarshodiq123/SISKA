@@ -33,6 +33,7 @@ public class LaporanMain extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         pembelianView1 = new Laporan.PembelianView();
         jPanel3 = new javax.swing.JPanel();
+        pendapatanView1 = new Laporan.PendapatanView();
         jPanel4 = new javax.swing.JPanel();
         stokView1 = new Laporan.StokView();
 
@@ -80,11 +81,11 @@ public class LaporanMain extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 847, Short.MAX_VALUE)
+            .addComponent(pendapatanView1, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 482, Short.MAX_VALUE)
+            .addComponent(pendapatanView1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Laporan Pendapatan", jPanel3);
@@ -130,6 +131,7 @@ public class LaporanMain extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private Laporan.PembelianView pembelianView1;
+    private Laporan.PendapatanView pendapatanView1;
     private Laporan.PenjualanView penjualan2;
     private Laporan.PenjualanView penjualan3;
     private Laporan.StokView stokView1;
