@@ -132,6 +132,7 @@ public class Main extends javax.swing.JFrame {
         dialog.setUndecorated(true);
         dialog.setType(java.awt.Window.Type.POPUP);
 
+        dialog2.setBackground(new java.awt.Color(58, 98, 215));
         dialog2.setBorder(null);
         dialog2.setBorderPainted(false);
 

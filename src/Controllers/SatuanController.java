@@ -2,6 +2,7 @@
 package Controllers;
 
 import Config.DB;
+import Helper.Notification;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JDialog;
@@ -134,6 +135,13 @@ public class SatuanController implements Controller {
 
             }
             int id = (int) satuanList.get(row)[0];
+            ResultSet data = DB.query("SELECT count(*)as count from obat where id_bentuk_sediaan = '"+id+"'" );
+            data.next();
+            if(data.getInt("count") > 0){
+                Notification.showInfo(Notification.DATA_IN_USE_ERROR, table);
+                return;
+            }
+            DB.query2("delete from bentuk_sediaan_obat where id = '"+id+"'");
             tampilData();
             JOptionPane.showMessageDialog(table, "Data Berhasil Di Hapus");
 
