@@ -414,7 +414,7 @@ public class PenjualanView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnexport1ActionPerformed
 
     private void buttonIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon1ActionPerformed
-     
+        controller.Printer();
     }//GEN-LAST:event_buttonIcon1ActionPerformed
 
     public void reset() {

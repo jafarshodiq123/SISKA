@@ -182,7 +182,7 @@ public class PendapatanView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(periode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnexport1)
                 .addGap(12, 12, 12))
@@ -207,7 +207,7 @@ public class PendapatanView extends javax.swing.JPanel {
     }//GEN-LAST:event_jPanel1AncestorAdded
 
     private void btnexport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexport1ActionPerformed
-        //        controller.export();
+       controller.export();
     }//GEN-LAST:event_btnexport1ActionPerformed
 
     private void periodeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_periodeItemStateChanged

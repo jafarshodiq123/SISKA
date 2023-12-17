@@ -13,7 +13,10 @@ import Helper.Currency;
 import Helper.FormatTanggal;
 import Laporan.PembelianView;
 import de.wannawork.jcalendar.JCalendarComboBox;
+import java.io.FileOutputStream;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,6 +30,10 @@ import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class LaporanPembelianController implements Controller {
 
@@ -284,6 +291,58 @@ public class LaporanPembelianController implements Controller {
             form.setVisible(true);
         } catch (Exception e) {
             Logger.getLogger(PembelianView.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    public void export() {
+        try {
+            // Koneksi ke database
+
+            java.sql.Connection connection = DB.getConnection();
+            // Query
+            String sql = "SELECT * FROM laporan_pembelian order by tanggal_transaksi desc";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet result = statement.executeQuery();
+
+            // Membuat workbook Excel
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Datalaporan Pembelian");
+
+            // Menambahkan header
+            Row headerRow = sheet.createRow(0);
+            int columnCount = result.getMetaData().getColumnCount();
+            for (int i = 1; i <= columnCount; i++) {
+                Cell cell = headerRow.createCell(i - 1);
+                cell.setCellValue(result.getMetaData().getColumnName(i));
+            }
+
+            // Menambahkan data
+            int rownum = 1;
+            while (result.next()) {
+                Row row = sheet.createRow(rownum++);
+                for (int i = 1; i <= columnCount; i++) {
+                    Cell cell = row.createCell(i - 1);
+                    cell.setCellValue(result.getString(i));
+                }
+            }
+
+            // Menyesuaikan lebar kolom
+            for (int i = 0; i < columnCount; i++) {
+                sheet.autoSizeColumn(i);
+            }
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy,HH-mm-ss");
+            String timestamp = dateFormat.format(new Date());
+            // Menyimpan ke file Excel
+            String fp = System.getProperty("user.home") + "/Downloads/laporan pembelian" + timestamp + " .xlsx";
+            FileOutputStream outputStream = new FileOutputStream(fp);
+            workbook.write(outputStream);
+            JOptionPane.showMessageDialog(table, "Berhasil Disimpan" + fp);
+            workbook.close();
+            connection.close();
+            outputStream.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

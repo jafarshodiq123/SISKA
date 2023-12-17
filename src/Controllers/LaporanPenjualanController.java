@@ -21,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -29,6 +31,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -376,4 +387,34 @@ public class LaporanPenjualanController implements Controller {
         }
     }
 
+    public void Printer() {
+
+        String kodeTrx = table.getValueAt(table.getSelectedRow(), 1).toString();
+        try {
+            String sqlQuery = "SELECT * FROM `printerview` where kode_transaksi = '"+kodeTrx+"'";
+            String path = "src/iReportdata/printpenjualan.jrxml";
+            JasperDesign jasperDesign = JRXmlLoader.load(path);
+
+            // Membuat objek JRDesignQuery
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sqlQuery);
+
+            // Mengaitkan JRDesignQuery dengan JasperDesign
+            jasperDesign.setQuery(newQuery);
+
+            // Langkah 3: Mengisi data ke laporan JasperReports
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            Map<String, Object> parameters = new HashMap<>();
+            // Mengisi laporan dengan data dari database
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DB.getConnection());
+
+            // Menampilkan laporan (opsional)
+            JasperViewer viewer = new JasperViewer(jasperPrint);
+            viewer.setVisible(true);
+            
+        } catch (JRException ex) {
+            Logger.getLogger(Transaksi.PenjualanView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

@@ -4,10 +4,6 @@
  */
 package Controllers;
 
-/**
- *
- * @author Muhammad Nor Kholit
- */
 import Config.DB;
 import Helper.Currency;
 import Helper.FormatTanggal;
@@ -22,29 +18,32 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class LaporanStokController implements Controller {
+/**
+ *
+ * @author rexy
+ */
+public class LaporanLabaBersihController implements Controller{
 
     private JTable table;
     private JDialog form;
     private ArrayList<Object[]> penjualanList = new ArrayList<>();
 
-    public LaporanStokController(JTable table, JDialog form) {
+    public LaporanLabaBersihController(JTable table, JDialog form) {
         this.table = table;
         this.form = form;
     }
 
-    @Override
+     @Override
     public void tampilData() {
         try {
             // mengambil data dari table kategori       
-            ResultSet data = DB.query("SELECT * FROM laporan_stok order by tanggal_transaksi desc");
+            ResultSet data = DB.query("SELECT * FROM laporan order by bulan_tahun desc");
             int no = 1;
             // menggunakan DefaultTableModel supaya bisa menambahkan data
             DefaultTableModel tables = (DefaultTableModel) table.getModel();
@@ -54,15 +53,12 @@ public class LaporanStokController implements Controller {
             penjualanList.clear();
 
             while (data.next()) {
-                //  menyimpan data dalam bentuk array
-                
-
                 Object[] dataTable = {
                     no,
-                    data.getString("kode_obat"),
-                    data.getString("nama_obat"),
-                    data.getString("obat_terjual"),
-                    FormatTanggal.formatDate(data.getDate("tanggal_transaksi"))
+                    data.getString("pendapatan"),
+                    data.getString("pengeluaran"),
+                    data.getString("laba_bersih"),
+                    data.getString("bulan_tahun")
 
                 };
                 //  memasukkan data kepada tabel
@@ -144,14 +140,10 @@ public class LaporanStokController implements Controller {
 
             String sql = "";
             if (index == 0) {
-                sql = "SELECT obat_terjual as total_obat_terjual ,nama_obat, DATE(tanggal_transaksi) as tanggal, kode_obat FROM laporan_stok   order by tanggal_transaksi desc";
+                sql = "SELECT * FROM laporan   order by bulan_tahun desc";
             } else if (index == 1) {
-                sql = "SELECT SUM(obat_terjual) AS total_obat_terjual, nama_obat, DATE(tanggal_transaksi) as tanggal, kode_obat FROM laporan_stok GROUP BY DATE(tanggal_transaksi),kode_obat, nama_obat order  by tanggal desc; ";
-            } else if (index == 2) {
-                sql = "SELECT SUM(obat_terjual) AS total_obat_terjual, nama_obat, DATE_FORMAT(tanggal_transaksi, '%Y-%m') AS tanggal, kode_obat FROM laporan_stok  GROUP BY tanggal, kode_obat, nama_obat order by tanggal desc;";
-            } else if (index == 3) {
-                sql = "SELECT SUM(obat_terjual) AS total_obat_terjual, nama_obat, DATE_FORMAT(tanggal_transaksi, '%Y') AS tanggal, kode_obat FROM laporan_stok  GROUP BY tanggal, kode_obat, nama_obat order by tanggal desc;";
-            }
+                sql = "SELECT SUM(pendapatan) AS pendapatan,SUM(pengeluaran) AS pengeluaran,SUM(laba_bersih) AS laba_bersih,LEFT(bulan_tahun, 4) as bulan_tahun FROM `laporan` GROUP by bulan_tahun";
+            } 
 
             ResultSet data = DB.query(sql);
             int no = 1;
@@ -168,10 +160,10 @@ public class LaporanStokController implements Controller {
 
                 Object[] dataTable = {
                     no,
-                    data.getString("kode_obat"),
-                    data.getString("nama_obat"),
-                    data.getString("total_obat_terjual"),
-                    FormatTanggal.formatTanggal(data.getString("tanggal"))
+                   data.getString("pendapatan"),
+                    data.getString("pengeluaran"),
+                    data.getString("laba_bersih"),
+                    data.getString("bulan_tahun")
 
                 };
                 //  memasukkan data kepada tabel
@@ -189,13 +181,13 @@ public class LaporanStokController implements Controller {
 
             java.sql.Connection connection = DB.getConnection();
             // Query
-            String sql = "SELECT * FROM laporan_stok order by tanggal_transaksi desc";
+            String sql = "SELECT * FROM laporan order by bulan_tahun desc";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
 
             // Membuat workbook Excel
             XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet sheet = workbook.createSheet("Datalaporan Stok");
+            XSSFSheet sheet = workbook.createSheet("Datalaporan laba bersih");
 
             // Menambahkan header
             Row headerRow = sheet.createRow(0);
@@ -222,7 +214,7 @@ public class LaporanStokController implements Controller {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy,HH-mm-ss");
             String timestamp = dateFormat.format(new Date());
             // Menyimpan ke file Excel
-            String fp = System.getProperty("user.home") + "/Downloads/Laporan Stok" + timestamp + " .xlsx";
+            String fp = System.getProperty("user.home") + "/Downloads/Laporan Bersih " + timestamp + " .xlsx";
             FileOutputStream outputStream = new FileOutputStream(fp);
             workbook.write(outputStream);
             JOptionPane.showMessageDialog(table, "Berhasil Disimpan" + fp);
@@ -235,5 +227,5 @@ public class LaporanStokController implements Controller {
             e.printStackTrace();
         }
     }
-
+    
 }

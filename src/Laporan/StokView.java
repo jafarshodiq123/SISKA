@@ -110,7 +110,12 @@ public class StokView extends javax.swing.JPanel {
 
         jLabel1.setText("Pilih Periode ");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Export");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,6 +168,10 @@ public class StokView extends javax.swing.JPanel {
     private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
         reset();
     }//GEN-LAST:event_jPanel1AncestorAdded
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        controller.export();
+    }//GEN-LAST:event_jButton1ActionPerformed
     public void reset() {
 //                removeAll();
 //        initComponents();

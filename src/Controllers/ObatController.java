@@ -112,8 +112,8 @@ public class ObatController implements Controller {
     @Override
     public void hapusData(Object[] object) {
         try {
-       
-            if(table.getSelectedRow() < 0){
+
+            if (table.getSelectedRow() < 0) {
                 Notification.showInfo(Notification.NO_DATA_SELECTED_INFO, table);
                 return;
             }
@@ -122,7 +122,7 @@ public class ObatController implements Controller {
                 return;
 
             }
-            String id = table.getValueAt(table.getSelectedRow(),1).toString();
+            String id = table.getValueAt(table.getSelectedRow(), 1).toString();
             ResultSet transaksiData = DB.query("SELECT count(*) as count from detail_pembelian where kode_obat= '" + id + "'");
             transaksiData.next();
             if (transaksiData.getInt("count") > 0) {
@@ -147,7 +147,7 @@ public class ObatController implements Controller {
             int no = 1;
             obatList.clear();
             while (data.next()) {
-                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"), data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"), data.getString("aturan_pakai"),Currency.format(data.getLong("harga"))};
+                Object[] dataArray = {no, data.getString("kode_obat"), data.getString("nama_obat"), data.getString("jumlah_obat"), data.getString("satuan"), data.getString("nama_kategori"), data.getString("aturan_pakai"), Currency.format(data.getLong("harga"))};
                 tabelData.addRow(dataArray);
                 obatList.add(dataArray);
                 no++;
@@ -178,12 +178,17 @@ public class ObatController implements Controller {
                 for (int i = 0; i < satuanList.size(); i++) {
                     String value = satuanList.get(i).getSelectedItem().toString();
                     String value2 = satuanTotalList.get(i).getText();
+                    String harga = hargaList.get(i).getText();
                     if (!uniqueBarangList.add(value)) {
                         Notification.showInfo("Nilai duplikat dalam satuan: " + value, form);
                         return;
                     }
                     if (value2.equals("")) {
                         Notification.showInfo("Total Satuan Harap Diisi: " + value, form);
+                        return;
+                    }
+                    if (!harga.matches("[0-9]+")) {
+                        Notification.showInfo("Total Satuan harus berupa angka: " ,form);
                         return;
                     }
 
