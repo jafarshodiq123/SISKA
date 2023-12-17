@@ -231,7 +231,7 @@
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="chartTitle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                  <Component id="lineChart" pref="178" max="32767" attributes="0"/>
+                  <Component id="lineChart" pref="272" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -275,7 +275,7 @@
                       <Component id="pendapatanLabel" min="-2" max="-2" attributes="0"/>
                       <Component id="pendapatan_harini" min="-2" pref="246" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="37" max="32767" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -340,7 +340,7 @@
                       <Component id="pengeluaran" min="-2" max="-2" attributes="0"/>
                       <Component id="pengeluaran_harini" min="-2" pref="294" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="57" max="32767" attributes="0"/>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

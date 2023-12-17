@@ -36,6 +36,8 @@ public class LaporanMain extends javax.swing.JPanel {
         pendapatanView1 = new Laporan.PendapatanView();
         jPanel4 = new javax.swing.JPanel();
         stokView1 = new Laporan.StokView();
+        jPanel5 = new javax.swing.JPanel();
+        lababersihView1 = new Laporan.lababersihView();
 
         jTabbedPane1.setBackground(new java.awt.Color(222, 226, 232));
 
@@ -50,10 +52,7 @@ public class LaporanMain extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(penjualan3, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(penjualan3, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Laporan Penjualan", jPanel1);
@@ -109,6 +108,30 @@ public class LaporanMain extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Laporan Stok Barang", jPanel4);
 
+        javax.swing.GroupLayout lababersihView1Layout = new javax.swing.GroupLayout(lababersihView1);
+        lababersihView1.setLayout(lababersihView1Layout);
+        lababersihView1Layout.setHorizontalGroup(
+            lababersihView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 847, Short.MAX_VALUE)
+        );
+        lababersihView1Layout.setVerticalGroup(
+            lababersihView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 488, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lababersihView1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lababersihView1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Laporan Laba Bersih", jPanel5);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,7 +140,7 @@ public class LaporanMain extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jTabbedPane1)
                 .addGap(0, 0, 0))
         );
@@ -129,7 +152,9 @@ public class LaporanMain extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private Laporan.lababersihView lababersihView1;
     private Laporan.PembelianView pembelianView1;
     private Laporan.PendapatanView pendapatanView1;
     private Laporan.PenjualanView penjualan2;

@@ -6,6 +6,7 @@ package Transaksi;
 
 import java.sql.ResultSet;
 import Components.DeleteButtonRenderer;
+import Config.DB;
 import Controllers.TransaksiPenjualanController;
 import com.formdev.flatlaf.ui.FlatTextBorder;
 import java.awt.Dimension;
@@ -16,7 +17,11 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -27,7 +32,16 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.TableCellEditor;
 import javax.swing.text.JTextComponent;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import table.TableCustom;
 
 /**
@@ -53,7 +67,7 @@ public class PenjualanView extends javax.swing.JPanel {
         int width = (int) (screenSize.width * 0.9);
         int height = (int) (screenSize.height * 0.9);
         setSize(width, height);
-        controller = new TransaksiPenjualanController(table, dataObat, dataJenis, qty, stok, harga, bayar, addList, batal, totalHarga, kembalian, btnBayar,lnamaobat,lkategoriobat,laturanpakai);
+        controller = new TransaksiPenjualanController(table, dataObat, dataJenis, qty, stok, harga, bayar, addList, batal, totalHarga, kembalian, btnBayar, lnamaobat, lkategoriobat, laturanpakai);
         controller.tampilData();
 //        AutoCompleteDecorator.decorate(dataObat);
 //        revalidate();
@@ -127,6 +141,7 @@ public class PenjualanView extends javax.swing.JPanel {
         kembalian = new Components.CustomField();
         btnBayar = new Components.ButtonIcon();
         totalHarga = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new Components.CustomPanel();
         jLabel3 = new javax.swing.JLabel();
         dataObat = new javax.swing.JComboBox<>();
@@ -217,6 +232,13 @@ public class PenjualanView extends javax.swing.JPanel {
         totalHarga.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         totalHarga.setText("Rp. 0.00");
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -225,6 +247,8 @@ public class PenjualanView extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(50, 50, 50)
                         .addComponent(btnBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
@@ -252,8 +276,13 @@ public class PenjualanView extends javax.swing.JPanel {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(kembalian, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -708,10 +737,37 @@ public class PenjualanView extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_kembalianActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            String sqlQuery = "SELECT * FROM `printerview` where kode_transaksi = 1";
+            String path = "src/iReportdata/printpenjualan.jrxml";
+            JasperDesign jasperDesign = JRXmlLoader.load(path);
+
+            // Membuat objek JRDesignQuery
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(sqlQuery);
+
+            // Mengaitkan JRDesignQuery dengan JasperDesign
+            jasperDesign.setQuery(newQuery);
+
+            // Langkah 3: Mengisi data ke laporan JasperReports
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            Map<String, Object> parameters = new HashMap<>();
+            // Mengisi laporan dengan data dari database
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DB.getConnection());
+
+            // Menampilkan laporan (opsional)
+            JasperViewer viewer = new JasperViewer(jasperPrint);
+            viewer.setVisible(true);
+        } catch (JRException ex) {
+            Logger.getLogger(PenjualanView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public void reset() {
 //        removeAll();
 //        initComponents();
-        controller = new TransaksiPenjualanController(table, dataObat, dataJenis, qty, stok, harga, bayar, addList, batal, totalHarga, kembalian, btnBayar,lnamaobat,lkategoriobat,laturanpakai);
+        controller = new TransaksiPenjualanController(table, dataObat, dataJenis, qty, stok, harga, bayar, addList, batal, totalHarga, kembalian, btnBayar, lnamaobat, lkategoriobat, laturanpakai);
         controller.tampilData();
 //        TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
     }
@@ -724,6 +780,7 @@ public class PenjualanView extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> dataJenis;
     private javax.swing.JComboBox<String> dataObat;
     private Components.CustomField harga;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

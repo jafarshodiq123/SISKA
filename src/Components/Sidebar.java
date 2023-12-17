@@ -29,7 +29,9 @@ public class Sidebar extends javax.swing.JPanel {
         {"icf_kategori.svg", "icn_kategori.svg", "Category", false},
         {"icf_trx.svg", "icn_trx.svg", "Transaction", false},
         {"icf_report.svg", "icn_report.svg", "Report", false},
-        {"icf_user.svg", "icn_user.svg", "User", false}};
+        {"icf_user.svg", "icn_user.svg", "User", false},
+            {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "Pengeluaran", false}};
+
     private Object[][] menu_list_data_kasir = {
         {"icf_home.svg", "icn_home.svg", "Home", true},
         {"icf_obat.svg", "icn_obat.svg", "Medicine", false},

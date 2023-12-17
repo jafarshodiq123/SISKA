@@ -363,7 +363,7 @@ public class Main extends javax.swing.JFrame {
         {"icf_trx.svg", "icn_trx.svg", "Transaction", "Transaksi", childTransaksi},
         {"icf_report.svg", "icn_report.svg", "Report", "Laporan", kosong},
         {"icf_user.svg", "icn_user.svg", "User", "Data User", kosong},
-        {"icf_user.svg", "icn_user.svg", "pengeluaran", "Data Pengeluaran", kosong}};
+        {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "pengeluaran", "Data Pengeluaran", kosong}};
 
     private Object[][] menu_list_data_kasir = {
         {"icf_home.svg", "icn_home.svg", "Home", "Dashboard", kosong},

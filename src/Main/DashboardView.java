@@ -173,7 +173,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(total_items, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         item_panelLayout.setVerticalGroup(
             item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +211,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(chartTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -235,7 +235,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pendapatanLabel)
                     .addComponent(pendapatan_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         pendapatanperhariLayout.setVerticalGroup(
             pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,7 +268,7 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pengeluaran)
                     .addComponent(pengeluaran_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         pengeluaranperhariLayout.setVerticalGroup(
             pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
