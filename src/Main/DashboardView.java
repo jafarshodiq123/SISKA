@@ -14,6 +14,7 @@ import Config.DB;
 import Helper.FormatTanggal;
 import java.sql.ResultSet;
 import com.formdev.flatlaf.FlatClientProperties;
+import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -33,7 +34,9 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+import com.formdev.flatlaf.extras.FlatSVGIcon;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 /**
  *
  * @author AkbarMr.
@@ -53,7 +56,9 @@ public class DashboardView extends javax.swing.JPanel {
 
         initComponents();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
+//        iconn.setIcon(new FlatSVGIcon("Assets/svg/svgtau.svg" ));
+        ImageIcon MINI = images("/Assets/iconnc.png", 32, 32);
+        iconn.setIcon(MINI);
         // Hitung ukuran JFrame
         int width = (int) (screenSize.width * 0.9);
         int height = (int) (screenSize.height * 0.9);
@@ -66,7 +71,13 @@ public class DashboardView extends javax.swing.JPanel {
         pengeluaran1hari();
 //        jLabel2.setText(userPreferences.get("Username", null));
     }
-
+ private ImageIcon images(String path, int WIDTH, int HEIGHT) {
+        System.out.println(path);
+        ImageIcon img = new ImageIcon(getClass().getResource(path));
+        Image image = (img).getImage().getScaledInstance(WIDTH, HEIGHT, Image.SCALE_SMOOTH);
+        img = new ImageIcon(image);
+        return img;
+    }
     public void reset() {
         removeAll();
         initComponents();
@@ -104,6 +115,7 @@ public class DashboardView extends javax.swing.JPanel {
         chart_panel = new javax.swing.JPanel();
         lineChart = new chart.LineChart();
         chartTitle = new javax.swing.JLabel();
+        tahunn = new javax.swing.JLabel();
         pendapatanperhari = new Components.CustomPanel();
         pendapatan_harini = new javax.swing.JLabel();
         pendapatanLabel = new javax.swing.JLabel();
@@ -114,6 +126,11 @@ public class DashboardView extends javax.swing.JPanel {
         notif_stok = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        iconn = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1221, 406));
         addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -147,11 +164,15 @@ public class DashboardView extends javax.swing.JPanel {
         notif_panel.setLayout(notif_panelLayout);
         notif_panelLayout.setHorizontalGroup(
             notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(notif_exp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+            .addGroup(notif_panelLayout.createSequentialGroup()
+                .addComponent(notif_exp, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         notif_panelLayout.setVerticalGroup(
             notif_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(notif_exp, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(notif_panelLayout.createSequentialGroup()
+                .addComponent(notif_exp, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         item_panel.setBackground(new java.awt.Color(58, 98, 215));
@@ -171,18 +192,17 @@ public class DashboardView extends javax.swing.JPanel {
             .addGroup(item_panelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(total_items, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(total_items, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         item_panelLayout.setVerticalGroup(
             item_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(item_panelLayout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(total_items, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addGap(15, 15, 15))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(total_items, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3))
         );
 
         chart_panel.putClientProperty(FlatClientProperties.STYLE, "arc:20");
@@ -191,28 +211,34 @@ public class DashboardView extends javax.swing.JPanel {
         chartTitle.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         chartTitle.setText("Laporan Tahun ");
 
+        tahunn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tahunn.setText("2012");
+
         javax.swing.GroupLayout chart_panelLayout = new javax.swing.GroupLayout(chart_panel);
         chart_panel.setLayout(chart_panelLayout);
         chart_panelLayout.setHorizontalGroup(
             chart_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(chart_panelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(chart_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(chart_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, 1008, Short.MAX_VALUE))
-                    .addGroup(chart_panelLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(chartTitle)))
+                        .addGap(15, 15, 15)
+                        .addComponent(chartTitle)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tahunn)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         chart_panelLayout.setVerticalGroup(
             chart_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, chart_panelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(chartTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(14, 14, 14)
+                .addGroup(chart_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chartTitle)
+                    .addComponent(tahunn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lineChart, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
         );
 
         pendapatanperhari.putClientProperty(FlatClientProperties.STYLE, "arc:20");
@@ -235,16 +261,14 @@ public class DashboardView extends javax.swing.JPanel {
                 .addGroup(pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pendapatanLabel)
                     .addComponent(pendapatan_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         pendapatanperhariLayout.setVerticalGroup(
             pendapatanperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pendapatanperhariLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(pendapatan_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pendapatan_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pendapatanLabel)
-                .addGap(17, 17, 17))
+                .addComponent(pendapatanLabel))
         );
 
         pengeluaranperhari.putClientProperty(FlatClientProperties.STYLE, "arc:20");
@@ -266,18 +290,17 @@ public class DashboardView extends javax.swing.JPanel {
             .addGroup(pengeluaranperhariLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pengeluaran)
-                    .addComponent(pengeluaran_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(pengeluaran_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pengeluaran))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pengeluaranperhariLayout.setVerticalGroup(
             pengeluaranperhariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pengeluaranperhariLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(pengeluaran_harini, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addComponent(pengeluaran_harini, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pengeluaran)
-                .addGap(15, 15, 15))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         notif_stok.setHorizontalScrollBar(null);
@@ -305,10 +328,52 @@ public class DashboardView extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(notif_stok)
-                .addGap(0, 0, 0))
+            .addComponent(notif_stok)
+        );
+
+        jPanel5.putClientProperty(FlatClientProperties.STYLE, "arc:20");
+        jPanel5.setBackground(new java.awt.Color(0, 102, 204));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("<html>Selamat Datang Di</html>");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("<html>Sistem Informasi Kasir Apotek</html>");
+
+        iconn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/iconnc.png"))); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("<html>SISKA</html>");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(iconn)
+                .addGap(43, 43, 43))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(iconn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -317,32 +382,36 @@ public class DashboardView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(item_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(pendapatanperhari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pendapatanperhari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(pengeluaranperhari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(1, 1, 1))
+                        .addComponent(pengeluaranperhari, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(item_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pendapatanperhari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pengeluaranperhari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(notif_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(notif_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pendapatanperhari, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(item_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pengeluaranperhari, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chart_panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -355,8 +424,11 @@ public class DashboardView extends javax.swing.JPanel {
             List<ModelChart> dataPengeluaran = new ArrayList<>();
             java.sql.Connection connection = DB.getConnection();
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            LocalDate now = LocalDate.now();
+             int tahunSekarang = now.getYear();
+             tahunn.setText(String.valueOf(tahunSekarang));
 //            ResultSet data = statement.executeQuery("SELECT bulan, SUM(total_pengeluaran) AS total_pengeluaran, SUM(total_penjualan) AS total_penjualan FROM ( SELECT MONTH(tanggal_pengeluaran) AS bulan, SUM(total_pengeluaran) AS total_pengeluaran, NULL AS total_penjualan FROM pengeluaran GROUP BY bulan UNION ALL SELECT MONTH(tanggal_transaksi) AS bulan, NULL AS total_pengeluaran, SUM(total_harga) AS total_penjualan FROM transaksi_penjualan GROUP BY bulan ) AS combined_data GROUP BY bulan;");
-            ResultSet data = statement.executeQuery("SELECT rugi_bersih,pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun, 2) as bulan FROM `laporan`");
+            ResultSet data = statement.executeQuery("SELECT pendapatan,pengeluaran,laba_bersih,RIGHT(bulan_tahun, 2) as bulan FROM `laporan` WHERE bulan_tahun LIKE '"+tahunSekarang+"%'");
 //            ResultSet data = DB.query("SELECT * FROM datachart");
             for (int bulan = 1; bulan <= 12; bulan++) {
                 String namaBulan = konversiintbln.getMonth(bulan);
@@ -592,13 +664,18 @@ public class DashboardView extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel chartTitle;
     private javax.swing.JPanel chart_panel;
+    private javax.swing.JLabel iconn;
     private javax.swing.JPanel item_panel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
     private chart.LineChart lineChart;
     private javax.swing.JScrollPane notif_exp;
     private javax.swing.JPanel notif_panel;
@@ -609,6 +686,7 @@ public class DashboardView extends javax.swing.JPanel {
     private javax.swing.JLabel pengeluaran;
     private javax.swing.JLabel pengeluaran_harini;
     private javax.swing.JPanel pengeluaranperhari;
+    private javax.swing.JLabel tahunn;
     private javax.swing.JLabel total_items;
     // End of variables declaration//GEN-END:variables
 }
