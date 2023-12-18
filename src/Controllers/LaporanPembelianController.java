@@ -271,7 +271,7 @@ public class LaporanPembelianController implements Controller {
             value_stokbrg.setText(totbrg);
             txttotalh2.setText(tottharga);
             value_tgl_pem.setText(tgltrpem);
-            ResultSet dbs = DB.query("SELECT nama_obat,harga,qty,total_harga from detail_pembelian join obat on detail_pembelian.kode_obat = obat.kode_obat where kode_transaksi='" + Kodetrx1 + "'");
+            ResultSet dbs = DB.query("SELECT nama_obat,harga,qty,subtotal from detail_pembelian join obat on detail_pembelian.kode_obat = obat.kode_obat where kode_transaksi='" + Kodetrx1 + "'");
             DefaultTableModel table2 = (DefaultTableModel) TBLdetail_2.getModel();
             while (dbs.next()) {
                 Object[] data = {
@@ -279,7 +279,7 @@ public class LaporanPembelianController implements Controller {
                     dbs.getString("nama_obat"),
                     dbs.getString("harga"),
                     dbs.getString("qty"),
-                    dbs.getString("total_harga")
+                    dbs.getString("subtotal")
                 };
                 table2.addRow(data);
                 no++;

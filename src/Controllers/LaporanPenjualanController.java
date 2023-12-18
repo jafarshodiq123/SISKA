@@ -264,7 +264,7 @@ public class LaporanPenjualanController implements Controller {
             value_bayar.setText(Currency.format(Integer.parseInt(pembayaran.trim())));
             value_kem.setText(Currency.format(Integer.parseInt(kembali.trim())));
 
-            ResultSet DBSetup = DB.query("SELECT nama_obat,harga,qty,total_harga from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
+            ResultSet DBSetup = DB.query("SELECT nama_obat,harga,qty,subtotal from detail_penjualan join obat on detail_penjualan.kode_obat = obat.kode_obat where kode_transaksi='" + kodeTrx + "'");
             DefaultTableModel table1 = (DefaultTableModel) TBLdetail_1.getModel();
             table1.setRowCount(0);
             while (DBSetup.next()) {
@@ -274,7 +274,7 @@ public class LaporanPenjualanController implements Controller {
                     DBSetup.getString("nama_obat"),
                     Currency.format(DBSetup.getInt("harga")),
                     DBSetup.getString("qty"),
-                    Currency.format(DBSetup.getInt("total_harga"))
+                    Currency.format(DBSetup.getInt("subtotal"))
 
                 };
                 table1.addRow(data);
@@ -409,7 +409,7 @@ public class LaporanPenjualanController implements Controller {
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, DB.getConnection());
 
             // Menampilkan laporan (opsional)
-            JasperViewer viewer = new JasperViewer(jasperPrint);
+            JasperViewer viewer = new JasperViewer(jasperPrint, false);
             viewer.setVisible(true);
             
         } catch (JRException ex) {
