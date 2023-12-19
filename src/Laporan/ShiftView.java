@@ -4,17 +4,23 @@
  */
 package Laporan;
 
+import Controllers.LaporanShiftController;
+
 /**
  *
  * @author admin
  */
 public class ShiftView extends javax.swing.JPanel {
-
+    private LaporanShiftController controller;
     /**
      * Creates new form ShiftView
      */
     public ShiftView() {
         initComponents();
+//          Object[] com = { };
+        controller = new LaporanShiftController(jTable1, form, jdata3, jdata4);
+//     
+        controller.tampilData();
     }
 
     /**
@@ -26,6 +32,7 @@ public class ShiftView extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        form = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -33,6 +40,17 @@ public class ShiftView extends javax.swing.JPanel {
         jdata4 = new de.wannawork.jcalendar.JCalendarComboBox();
         btnfilter2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout formLayout = new javax.swing.GroupLayout(form.getContentPane());
+        form.getContentPane().setLayout(formLayout);
+        formLayout.setHorizontalGroup(
+            formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        formLayout.setVerticalGroup(
+            formLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -141,11 +159,11 @@ public class ShiftView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnfilter2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnfilter2ActionPerformed
-
+        controller.filter();
     }//GEN-LAST:event_btnfilter2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+        controller.export();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jPanel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jPanel1AncestorAdded
@@ -155,6 +173,7 @@ public class ShiftView extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnfilter2;
+    private javax.swing.JDialog form;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -240,6 +240,7 @@ public class TransaksiPembelianController implements Controller {
                     dataTable.add(rowData);
                     return;
                 }
+                index++;
             }
             ResultSet dataSp = DB.query("SELECT * from data_obat where nama_obat  = '" + namaOb + "'");
             DefaultTableModel model = (DefaultTableModel) table.getModel();
