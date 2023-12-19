@@ -62,7 +62,7 @@ public class Main extends javax.swing.JFrame {
         // Hitung ukuran JFrame
         int width = (int) (screenSize.width * 0.9);
         int height = (int) (screenSize.height * 0.9);
-        setSize(width,height);
+        setSize(width, height);
         main.setOpaque(true);
         cardLayout = new CardLayout();
         main.setLayout(cardLayout);
@@ -176,6 +176,14 @@ public class Main extends javax.swing.JFrame {
         username.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         username.setText("Username");
         username.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        username.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usernameMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                usernameMouseEntered(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -280,6 +288,14 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void usernameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameMouseEntered
+        showLogout();
+    }//GEN-LAST:event_usernameMouseEntered
+
+    private void usernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameMouseClicked
+        showLogout();
+    }//GEN-LAST:event_usernameMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -356,10 +372,10 @@ public class Main extends javax.swing.JFrame {
 //    private 
     private Object[][] menu_list_data_owner = {
         {"icf_home.svg", "icn_home.svg", "Home", "Dashboard", kosong},
-        {"icf_obat.svg", "icn_obat.svg", "Medicine", "Data Obat", childObat},
+        {"icf_obat.svg", "icn_obat.svg", "<html> Medicine <b>&#8595;</b> </html>", "Data Obat", childObat},
         {"icf_supplier.svg", "icn_supplier.svg", "Supplier", "Data Suplier", kosong},
         {"icf_kategori.svg", "icn_kategori.svg", "Category", "Data Categori", kosong},
-        {"icf_trx.svg", "icn_trx.svg", "Transaction", "Transaksi", childTransaksi},
+        {"icf_trx.svg", "icn_trx.svg", "<html>Transaction <b>&#8595;</b></html>", "Transaksi", childTransaksi},
         {"icf_report.svg", "icn_report.svg", "Report", "Laporan", kosong},
         {"icf_user.svg", "icn_user.svg", "User", "Data User", kosong},
         {"icf_pengeluaran.svg", "icn_pengeluaran.svg", "pengeluaran", "Data Pengeluaran", kosong}};
@@ -391,10 +407,12 @@ public class Main extends javax.swing.JFrame {
 
                 @Override
                 public void mouseClicked(MouseEvent evt) {
+                    showPopUp(objects, panel, label);
                     Object[] childRows = (Object[]) objects[4];
                     if (childRows.length > 0) {
                         return;
                     }
+
                     resetStyle();
                     setBoldFont(label);
                     setBottomBorder(panel);
@@ -476,45 +494,7 @@ public class Main extends javax.swing.JFrame {
 //                }
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    for (JPanel panel : addedLabels) {
-                        dialog2.remove(panel);
-                    }
-                    addedLabels.clear();
-                    Object[] childRows = (Object[]) objects[4];
-                    javax.swing.JPanel panel2 = new javax.swing.JPanel();
-                    panel2.setBackground(new Color(51, 85, 188));
-                    panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
-                    panel2.setPreferredSize(new Dimension(200, 43 * childRows.length));
-//                    panel2.setSize(200, 100);
-                    panel2.setBorder(new EmptyBorder(5, 0, 0, 0));
-                    for (Object object : childRows) {
-                        Object[] innerRow = (Object[]) object;
-                        javax.swing.JLabel label2 = new javax.swing.JLabel(innerRow[0].toString());
-                        javax.swing.JPanel panel3 = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
-                        label2.setHorizontalAlignment(SwingConstants.LEFT);
-                        label2.setForeground(Color.white);
-                        label2.setFont(new Font("Poppins", Font.PLAIN, 13));
-                        panel3.setBorder(new EmptyBorder(0, 10, 5, 10));
-                        panel3.setBackground(new Color(51, 85, 188));
-                        panel3.add(label2);
-                        panel2.add(panel3);
-
-                        dialog2.add(panel2);
-                        addedLabels.add(panel2);
-                        panel3.addMouseListener(new java.awt.event.MouseAdapter() {
-                            @Override
-                            public void mouseClicked(MouseEvent e) {
-                                resetStyle();
-                                setBoldFont(label);
-                                setBottomBorder(panel);
-                                cardLayout.show(main, innerRow[0].toString());
-                                pageName.setText(innerRow[1].toString());
-                                dialog2.setVisible(false);
-                            }
-                        });
-
-                    }
-                    dialog2.show(panel, 0, panel.getHeight() + 5);
+                    showPopUp(objects, panel, label);
                 }
 
             });
@@ -523,6 +503,82 @@ public class Main extends javax.swing.JFrame {
             menu_bar.add(panel);
 
         }
+    }
+
+    public void showPopUp(Object[] objects, JPanel panel, JLabel label) {
+        for (JPanel panel2 : addedLabels) {
+            dialog2.remove(panel2);
+        }
+        addedLabels.clear();
+        Object[] childRows = (Object[]) objects[4];
+        javax.swing.JPanel panel2 = new javax.swing.JPanel();
+        panel2.setBackground(new Color(51, 85, 188));
+        panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+        panel2.setPreferredSize(new Dimension(200, 43 * childRows.length));
+//                    panel2.setSize(200, 100);
+        panel2.setBorder(new EmptyBorder(5, 0, 0, 0));
+        for (Object object : childRows) {
+            Object[] innerRow = (Object[]) object;
+            javax.swing.JLabel label2 = new javax.swing.JLabel(innerRow[0].toString());
+            javax.swing.JPanel panel3 = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
+            label2.setHorizontalAlignment(SwingConstants.LEFT);
+            label2.setForeground(Color.white);
+            label2.setFont(new Font("Poppins", Font.PLAIN, 13));
+            panel3.setBorder(new EmptyBorder(0, 10, 5, 10));
+            panel3.setBackground(new Color(51, 85, 188));
+            panel3.add(label2);
+            panel2.add(panel3);
+
+            dialog2.add(panel2);
+            addedLabels.add(panel2);
+            panel3.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    resetStyle();
+                    setBoldFont(label);
+                    setBottomBorder(panel);
+                    cardLayout.show(main, innerRow[0].toString());
+                    pageName.setText(innerRow[1].toString());
+                    dialog2.setVisible(false);
+                }
+            });
+
+        }
+        dialog2.show(panel, 0, panel.getHeight() + 5);
+    }
+
+    public void showLogout() {
+        for (JPanel panel : addedLabels) {
+            dialog2.remove(panel);
+        }
+        addedLabels.clear();
+        javax.swing.JPanel panel2 = new javax.swing.JPanel();
+        panel2.setBackground(new Color(51, 85, 188));
+        panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+        panel2.setPreferredSize(new Dimension(200, 43));
+//                    panel2.setSize(200, 100);
+        panel2.setBorder(new EmptyBorder(5, 0, 0, 0));
+        javax.swing.JLabel label2 = new javax.swing.JLabel("Logout");
+        javax.swing.JPanel panel3 = new javax.swing.JPanel(new FlowLayout(FlowLayout.LEFT));
+        label2.setHorizontalAlignment(SwingConstants.LEFT);
+        label2.setForeground(Color.white);
+        label2.setFont(new Font("Poppins", Font.PLAIN, 13));
+        panel3.setBorder(new EmptyBorder(0, 10, 5, 10));
+        panel3.setBackground(new Color(51, 85, 188));
+        panel3.add(label2);
+        panel2.add(panel3);
+
+        dialog2.add(panel2);
+        addedLabels.add(panel2);
+        panel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+                new login().setVisible(true);
+            }
+        });
+
+        dialog2.show(username, username.getWidth(), username.getHeight() + 5);
     }
 
     private void resetStyle() {

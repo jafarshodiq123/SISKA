@@ -8,6 +8,7 @@ import Components.ButtonIcon;
 import Components.CustomButton;
 import Config.DB;
 import Helper.Currency;
+import Helper.FormatTanggal;
 import Helper.KodeGenerator;
 import Helper.Notification;
 import Obat.Form;
@@ -47,11 +48,17 @@ public class ObatController implements Controller {
     private String idEdit = "";
     int status = 1;
     private JTable table;
+    private JTable tableSatuan;
+    private JTable tableStok;
     private JDialog form;
+    private JDialog detail;
     private JTable listParent;
     private JTextField namaObat;
     private JTextField aturanPakai;
     private JComboBox kategori;
+    private JTextField namaObat1;
+    private JTextField aturanPakai1;
+    private JTextField kategori1;
     private JPanel satuanListCom;
     private JPanel hargaListCom;
     private JLabel titleForm;
@@ -68,6 +75,12 @@ public class ObatController implements Controller {
         this.satuanListCom = (JPanel) component[3];
         this.hargaListCom = (JPanel) component[4];
         this.titleForm = (JLabel) component[5];
+        this.detail = (JDialog) component[6];
+        this.namaObat1 = (JTextField) component[7];
+        this.kategori1 = (JTextField) component[8];
+        this.aturanPakai1 = (JTextField) component[9];
+        this.tableStok = (JTable) component[10];
+        this.tableSatuan = (JTable) component[11];
     }
 
     @Override
@@ -188,7 +201,7 @@ public class ObatController implements Controller {
                         return;
                     }
                     if (!harga.matches("[0-9]+")) {
-                        Notification.showInfo("Total Satuan harus berupa angka: " ,form);
+                        Notification.showInfo("Total Satuan harus berupa angka: ", form);
                         return;
                     }
 
@@ -256,6 +269,42 @@ public class ObatController implements Controller {
             form.pack();
             form.setLocationRelativeTo(null);
             form.setVisible(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(table, "Sistem error " + e.getMessage());
+
+        }
+    }
+    
+    public void detail(){
+        try {
+            if (table.getSelectedRow() < 0) {
+                return;
+            }
+            clearDialog();
+            int row = table.getSelectedRow();
+            String idObat = table.getValueAt(row, 1).toString();
+            namaObat1.setText(table.getValueAt(row, 2).toString());
+            aturanPakai1.setText(table.getValueAt(row, 6).toString());
+
+            DefaultTableModel model1  = (DefaultTableModel) tableSatuan.getModel();
+            ResultSet satuanData = DB.query("SELECT * from data_jenis_penjualan where kode_obat='" + idObat + "'");
+            model1.setRowCount(0);
+            while (satuanData.next()) {
+                Object[] objectRow = {satuanData.getString("satuan"), satuanData.getInt("total"), satuanData.getInt("harga")};
+                model1.addRow(objectRow);
+            }
+
+            DefaultTableModel model2  = (DefaultTableModel) tableStok.getModel();
+            ResultSet stokData = DB.query("SELECT * from stok_obat join supplier on stok_obat.kode_suplier = supplier.kode_suplier where kode_obat='" + idObat + "' order by tanggal_masuk desc");
+            model2.setRowCount(0);
+            while (stokData.next()) {
+                Object[] objectRow = {stokData.getString("jumlah_obat"), stokData.getString("nama_suplier"),FormatTanggal.formatDate(stokData.getDate("tanggal_kadaluarsa")), FormatTanggal.formatDate(stokData.getDate("tanggal_masuk"))};
+                model2.addRow(objectRow);
+            }
+
+            detail.pack();
+            detail.setLocationRelativeTo(null);
+            detail.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(table, "Sistem error " + e.getMessage());
 
