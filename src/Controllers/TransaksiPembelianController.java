@@ -52,6 +52,8 @@ public class TransaksiPembelianController implements Controller {
 
     @Override
     public void tampilData() {
+        resetTable();
+        resetAll();
         ResultSet dataSp = DB.query("select * from supplier");
         ResultSet dataOb = DB.query("select * from data_obat");
         try {
