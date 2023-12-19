@@ -390,6 +390,8 @@ public class PembelianView extends javax.swing.JPanel {
 
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
         Object[] component = {table, dataSuplier, dataObat, qty, harga};
+        qty.setText("0");
+        harga.setText("Rp.0");
         controller = new Controllers.TransaksiPembelianController(component);
         controller.spIsClick = false;
         controller.tampilData();
