@@ -38,6 +38,7 @@ public class LaporanMain extends javax.swing.JPanel {
         stokView1 = new Laporan.StokView();
         jPanel5 = new javax.swing.JPanel();
         lababersihView1 = new Laporan.lababersihView();
+        lababersihView2 = new Laporan.lababersihView();
 
         jTabbedPane1.setBackground(new java.awt.Color(222, 226, 232));
 
@@ -112,11 +113,11 @@ public class LaporanMain extends javax.swing.JPanel {
         lababersihView1.setLayout(lababersihView1Layout);
         lababersihView1Layout.setHorizontalGroup(
             lababersihView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 847, Short.MAX_VALUE)
+            .addComponent(lababersihView2, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
         );
         lababersihView1Layout.setVerticalGroup(
             lababersihView1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 488, Short.MAX_VALUE)
+            .addComponent(lababersihView2, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -155,6 +156,7 @@ public class LaporanMain extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private Laporan.lababersihView lababersihView1;
+    private Laporan.lababersihView lababersihView2;
     private Laporan.PembelianView pembelianView1;
     private Laporan.PendapatanView pendapatanView1;
     private Laporan.PenjualanView penjualan2;

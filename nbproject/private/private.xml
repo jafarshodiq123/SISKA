@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
@@ -23,3 +24,42 @@
         </group>
     </open-files>
 </project-private>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Laporan/StokView.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Controllers/ObatController.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Config/DB.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Controllers/LaporanPenjualanController.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Main/DashboardView.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Controllers/LaporanPendapatanController.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Controllers/TransaksiPenjualanController.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Auth/login.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Transaksi/TransaksiMain.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Controllers/TransaksiPembelianController.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Obat/SatuanView.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Controllers/Controller.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Controllers/LaporanStokController.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Laporan/lababersihView.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Controllers/LaporanLabaBersihController.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Transaksi/PenjualanView.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Obat/Form.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Laporan/PembelianView.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Controllers/SupplierController.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Main/Main.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Laporan/PendapatanView.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Transaksi/PembelianView.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Obat/ObatView.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Controllers/LaporanPembelianController.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Controllers/SatuanController.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Laporan/PenjualanView.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/iReportdata/printpenjualan.jrxml</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Laporan/LaporanMain.java</file>
+            <file>file:/D:/project%20netbeans/TIF_EXIBITION_DESKTOP/src/Auth/SaldoKasAwal.java</file>
+        </group>
+    </open-files>
+</project-private>
+>>>>>>> 932fc7771d81024ac84fdd964ad3a26d6b0a84d4

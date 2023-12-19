@@ -108,7 +108,7 @@ public class TransaksiPembelianController implements Controller {
                 java.sql.Connection connection = DB.getConnection();
 //                issupp = issupp.split(">")[1];
 
-                String insertDetailQuery = "INSERT INTO detail_pembelian(kode_transaksi, kode_obat, harga, qty, total_harga) VALUES (?, ?, ?, ?, ?)";
+                String insertDetailQuery = "INSERT INTO detail_pembelian(kode_transaksi, kode_obat, harga, qty, subtotal) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement insertDetailStatement = connection.prepareStatement(insertDetailQuery);
 
                 String insertStokQuery = "INSERT INTO stok_obat(kode_obat, kode_suplier, jumlah_obat, harga_beli, tanggal_kadaluarsa,tanggal_masuk) VALUES (?, ?, ?, ?, ?,curdate())";
