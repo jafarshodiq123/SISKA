@@ -27,7 +27,7 @@ public class ObatView extends javax.swing.JPanel {
         TableCustom.apply(jScrollPane1, TableCustom.TableType.MULTI_LINE);
         searchObat.setIcon("Assets/svg/searchIcon.svg");
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -632,8 +632,9 @@ public class ObatView extends javax.swing.JPanel {
     }//GEN-LAST:event_searchObatKeyReleased
 
     private void formAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_formAncestorAdded
-//        controller = new Controllers.ObatController(table, form, tableSatuan);
-//        controller.tampilData();
+        Object[] componentSent = {namaObat,kategori,aturanPakai,satuanList,hargaList,titleForm,detail,namaObat1,kategori1,aturanPakai1,stokTable,satuanTable};
+        controller = new Controllers.ObatController(table, form, componentSent);
+        controller.tampilData();
     }//GEN-LAST:event_formAncestorAdded
 
     private void buttonIcon4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon4ActionPerformed

@@ -284,6 +284,7 @@ public class ObatController implements Controller {
             int row = table.getSelectedRow();
             String idObat = table.getValueAt(row, 1).toString();
             namaObat1.setText(table.getValueAt(row, 2).toString());
+            kategori1.setText(table.getValueAt(row, 5).toString());
             aturanPakai1.setText(table.getValueAt(row, 6).toString());
 
             DefaultTableModel model1  = (DefaultTableModel) tableSatuan.getModel();
